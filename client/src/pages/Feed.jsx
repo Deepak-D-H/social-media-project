@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react';
-import { dummyPostsData } from '../assets/assets';
+import { assets, dummyPostsData } from '../assets/assets';
 import Loading from '../components/Loading';
 import StoriesBar from '../components/StoriesBar';
 import PostCard from '../components/PostCard';
+import RecentMessages from '../components/RecentMessages';
 
 const Feed = () => {
   const [feeds, setFeeds] = useState([])
@@ -43,14 +44,18 @@ const Feed = () => {
 
       </div>
     {/* right side bar */}
-    <div>
-      <div>
-        <h1>sponsered</h1>
+    <div className='max-xl:hidden sticky top-0'>
+      <div className='max-w-xs bg-white text-xs p-4 rounded-md inline-flex flex-col gap-2 shadow'>
+        <h3 className='text-slate-800 font-semibold'>sponsered</h3>
+        <img src={assets.sponsored_img} alt="" className='w-75 h-50 rounded-md' />
+        <p className='text-slate-500'>Email Marketing</p>
+        <p className='text-slate-400'>Upgrade your life, one smart choice at a time</p>
       </div>
       <div>
-        <h1>resent messages
+        {/* <h1>resent messages</h1> */}
+        <RecentMessages/>
 
-        </h1>
+        
       </div>
 
     </div>
