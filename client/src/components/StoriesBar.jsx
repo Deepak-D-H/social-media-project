@@ -3,6 +3,7 @@ import { dummyStoriesData } from '../assets/assets';
 import { Plus } from 'lucide-react';
 import moment from 'moment'
 import StoryModel from './StoryModel';
+import StoryViewer from './StoryViewer';
 
 const StoriesBar = () => {
 
@@ -17,6 +18,8 @@ const StoriesBar = () => {
 
   }, [])
   return (
+    // no-scrollbar is class name not a css property it is used to hide the scrollbar in the div and it is defined in the index.css file
+    
     <div className='w-screen sm:w-[calc(100vw-240px)] lg:max-w-2xl  overflow-x-auto no-scrollbar   px-4'>
       <div className='flex gap-4 pb-5'>
         {/* {add a story card} */}
@@ -34,7 +37,9 @@ const StoriesBar = () => {
         {
           stories.map((story, index) => (
             // rounded-lg shadow-sm min-w-30 max-w-30 max-h-40 aspect-3/4 cursor-pointer
-            <div key={index} className={`relative rounded-lg shadow min-w-30 max-w-30 max-h-40 cursor-pointer hover:shadow-lg transition-all duration-200 bg-linear-to-b from-indigo-500 to-purple-500 hover:from-indigo-700 hover:to-purple-800 active:scale-95`}>
+            <div
+            onClick={()=> setViewStory(story)} 
+            key={index} className={`relative rounded-lg shadow min-w-30 max-w-30 max-h-40 cursor-pointer hover:shadow-lg transition-all duration-200 bg-linear-to-b from-indigo-500 to-purple-500 hover:from-indigo-700 hover:to-purple-800 active:scale-95`}>
 
               <img src={story.user.profile_picture} alt="" className='absolute size-8 top-3 left-3 z-10 rounded-full ring ring-gray-100 shadow' />
 
@@ -67,7 +72,14 @@ const StoriesBar = () => {
         }
       </div>
       {/* Add story model */}
-      {showModel && <StoryModel setShowModel={setShowModel} fetchStories={fetchStories}/>}
+      {
+      showModel && <StoryModel setShowModel={setShowModel} fetchStories={fetchStories}/>
+      }
+
+      {/* view story model */}
+      {
+        viewStory && <StoryViewer viewStory={viewStory} setViewStory={setViewStory}/>
+      }
 
 
     </div>

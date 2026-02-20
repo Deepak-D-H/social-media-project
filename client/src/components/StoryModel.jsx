@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import {ArrowLeft, Sparkle, TextIcon,Upload} from 'lucide-react'
+import toast from "react-hot-toast";
+
+
+// used for creating the story by user and then it will be uploaded to the server and then it will be shown to the other users in the story viewer component
 
 const StoryModel = ({setShowModel,fetchStories}) => {
   const bgColors = [
@@ -85,7 +89,15 @@ const StoryModel = ({setShowModel,fetchStories}) => {
              <Upload size={18}/>Photo/Vidio
           </label>
         </div>
-        <button className='flex items-center justify-center gap-2 text-white py-3 mt-4 w-full rounded bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition cursor-pointer'>
+        <button 
+
+        onClick={() => toast.promise(handleCreateStory(),{
+          loading:'Saving.....',
+          success: <p>Story Added</p>,
+          error: e => <p>{e.message}</p>,
+        })}
+
+         className='flex items-center justify-center gap-2 text-white py-3 mt-4 w-full rounded bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition cursor-pointer'>
           <Sparkle size={18}/>Create Story
         </button>
 
