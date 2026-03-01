@@ -4,11 +4,11 @@ import Loading from '../components/Loading'
 import UserProfileinfo from '../components/UserProfileinfo'
 import PostCard from '../components/PostCard'
 
-
 // useParams is used to get the params from the url
 import {useParams} from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import ProfileModal from '../components/ProfileModal';
 
 const Profile = () => {
 
@@ -101,7 +101,7 @@ const Profile = () => {
         </div>
       </div>
       {/* {Edit profile model} */}
-      {showEdit && <p>Show Profile Edit</p>}
+      {showEdit && <ProfileModal setShowEdit={setShowEdit}/>}
       
     </div>
   ) 
